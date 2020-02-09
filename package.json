@@ -1,0 +1,16 @@
+{
+  "name": "refresh-ahead-cache",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shivanand PB",
+  "license": "ISC",
+  "dependencies": {
+    "ioredis": "^4.14.1",
+    "moment": "^2.24.0",
+    "restify": "^8.5.1"
+  }
+}
