@@ -119,6 +119,14 @@ const getFromRACache = async (args, key, ttl, refreshAheadTime, fetchDatafxn) =>
   /**
    *  CACHE MISS
    */
+
+  // Clear refreshKey, invalidateKey & recentlyUpdated entry the state 
+  // JIC if they can cause race conditions
+  redis.del(getRefreshKey(key));
+  redis.del(invalidateKey(key));
+  removeInvalidation(key);
+  
+  // Fetch and store the object
   const newCacheObject = await createCachableObject(args, ttl, refreshAheadTime, fetchDatafxn);
   redis.set(key, JSON.stringify(newCacheObject), 'EX', ttl + jitter());
   return newCacheObject.payload;
